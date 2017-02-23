@@ -11,7 +11,7 @@ namespace HeadisSimulatorSFML
     {
         static void Main(string[] args)
         {
-            GameLoop.Init();
+            GameLoop.RunGame();
         }
     }
 }

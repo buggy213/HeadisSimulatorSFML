@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F3AB0422-C57C-436C-BD30-EAC509932C2C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>HeadisSimulatorSFML</RootNamespace>
     <AssemblyName>HeadisSimulatorSFML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -69,6 +72,9 @@
   <ItemGroup>
     <Compile Include="Engine\DisplaySettings.cs" />
     <Compile Include="Engine\GameLoop.cs" />
+    <Compile Include="Engine\IUpdatable.cs" />
+    <Compile Include="Engine\Screen.cs" />
+    <Compile Include="Engine\ScreenManager.cs" />
     <Compile Include="Engine\WindowManager.cs" />
     <Compile Include="Farseer Physics Engine 3.5\Collision\Collision.cs" />
     <Compile Include="Farseer Physics Engine 3.5\Collision\Distance.cs" />
@@ -210,12 +216,38 @@
   <ItemGroup>
     <Content Include="buildnumber.txt" />
     <Content Include="changelog.txt" />
+    <Content Include="csfml-audio-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-graphics-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-network-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-system-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-window-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libsndfile-1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="openal32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenTK.Compatibility.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OpenTK.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>cd $(ProjectDir)
-if not exist TEST.txt &gt;TEST.txt echo 0
-for /f %25%25x in (TEST.txt) do (
+for /f %25%25x in (buildnumber.txt) do (
 set /a var=%25%25x+1
 )
 &gt;buildnumber.txt echo %25var%25

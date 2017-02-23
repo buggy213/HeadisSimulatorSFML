@@ -12,6 +12,13 @@ namespace HeadisSimulatorSFML.Engine
         static bool gameRunning;
         static Clock clock;
 
+        public static void RunGame()
+        {
+            Init();
+            Loop();
+        }
+
+
         public static void Stop()
         {
             gameRunning = false;
@@ -21,6 +28,8 @@ namespace HeadisSimulatorSFML.Engine
         {
             clock = new Clock();
             clock.Restart();
+
+            gameRunning = true;
 
             // Initialize all the Manager classes
             WindowManager.Init();
@@ -61,12 +70,12 @@ namespace HeadisSimulatorSFML.Engine
 
         public static void Update(float deltaTime)
         {
-
+            
         }
 
         public static void Display()
         {
-
+            WindowManager.UpdateWindow();
         }
 
         public static long Millis(this Clock clock)
