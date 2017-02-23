@@ -52,6 +52,7 @@ namespace HeadisSimulatorSFML.Engine
         static void OnClose (object sender, EventArgs e)
         {
             renderWindow.Close();
+            GameLoop.Stop();
         }
     }
 }

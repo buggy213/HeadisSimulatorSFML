@@ -1,0 +1,8 @@
+﻿Changelog
+
+0.0.1.2
+- Super basic skeleton of engine laid out
+- Project established
+- Physics engine imported
+- Window functionality partially completed
+- Dewitters game loop implemented
