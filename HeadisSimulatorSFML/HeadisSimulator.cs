@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HeadisSimulatorSFML.Engine;
-
-namespace HeadisSimulatorSFML
+﻿namespace HeadisSimulatorSFML
 {
-    class HeadisSimulator
+    using HeadisSimulatorSFML.Engine;
+
+    public class HeadisSimulator
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             GameLoop.RunGame();
         }

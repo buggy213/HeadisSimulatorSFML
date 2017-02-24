@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HeadisSimulatorSFML.Engine
+﻿namespace HeadisSimulatorSFML.Engine
 {
-    static class ScreenManager
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public static class ScreenManager
     {
-        static Stack<Screen> screens;
-        static Screen currentScreen;
+        private static Stack<Screen> screens;
+        private static Screen currentScreen;
+
+        public static Stack<Screen> Screens { get => screens; }
+
+        public static Screen CurrentScreen { get => currentScreen; }
 
         public static void PushScreen(Screen screen)
         {
@@ -40,6 +44,7 @@ namespace HeadisSimulatorSFML.Engine
                 // No screen is present, so you can't update anything
                 return;
             }
+
             currentScreen.Update(deltaTime);
         }
 

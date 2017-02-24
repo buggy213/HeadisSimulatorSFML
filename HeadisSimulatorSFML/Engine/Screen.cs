@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HeadisSimulatorSFML.Engine
+﻿namespace HeadisSimulatorSFML.Engine
 {
     public class Screen : IUpdatable
     {
-        bool inFocus;
+        private bool inFocus;
         
         public bool InFocus
         {
@@ -16,24 +10,13 @@ namespace HeadisSimulatorSFML.Engine
             {
                 return inFocus;
             }
+
             set
             {
                 inFocus = value;
             }
         }
-
-        // Returns whether or not it was successful at exiting
-        bool ExitScreen()
-        {
-            if (ScreenManager.Peek() == this)
-            {
-                ScreenManager.PopScreen();
-                return true;
-            }
-
-            return false;
-        }
-
+        
         public virtual void Update(float deltaTime)
         {
 
@@ -44,5 +27,16 @@ namespace HeadisSimulatorSFML.Engine
 
         }
 
+        // Returns whether or not it was successful at exiting
+        protected bool ExitScreen()
+        {
+            if (ScreenManager.Peek() == this)
+            {
+                ScreenManager.PopScreen();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

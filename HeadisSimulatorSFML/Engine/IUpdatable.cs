@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HeadisSimulatorSFML.Engine
+﻿namespace HeadisSimulatorSFML.Engine
 {
-    interface IUpdatable
+    public interface IUpdatable
     {
         void Update(float deltaTime);
     }

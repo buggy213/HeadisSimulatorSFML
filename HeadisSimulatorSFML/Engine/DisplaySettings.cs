@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HeadisSimulatorSFML.Engine
+﻿namespace HeadisSimulatorSFML.Engine
 {
-    class DisplaySettings
+    public class DisplaySettings
     {
         // Whether or not V-Sync is enabled
         // TODO make all of these settings changable by the user and loaded from a config file or something
-        public static bool vSyncOn = true;
+        public static bool VSyncOn = true;
 
-        public static uint requestedWidth;
+        public static uint RequestedWidth;
 
-        public static uint requestedHeight;
+        public static uint RequestedHeight;
 
-        public static bool fullScreen = true;
+        public static bool FullScreen = true;
 
-        public static string windowTitle = "Headis Simulator";
-
+        public static string WindowTitle = "Headis Simulator";
     }
 }

@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML.System;
-
-namespace HeadisSimulatorSFML.Engine
+﻿namespace HeadisSimulatorSFML.Engine
 {
-    static class GameLoop
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using SFML.System;
+
+    public static class GameLoop
     {
-        static bool gameRunning;
-        static Clock clock;
+        private static bool gameRunning;
+        private static Clock clock;
 
         public static void RunGame()
         {
             Init();
             Loop();
         }
-
 
         public static void Stop()
         {
@@ -33,10 +32,6 @@ namespace HeadisSimulatorSFML.Engine
 
             // Initialize all the Manager classes
             WindowManager.Init();
-
-
-
-
         }
 
         // The actual gameloop -- based off of the dewitters gameloop
@@ -45,26 +40,26 @@ namespace HeadisSimulatorSFML.Engine
             long nextGameTick = clock.Millis();
             long previousUpdateTick = clock.Millis();
 
-            // float interpolation;
+            float interpolation;
 
             while (gameRunning)
             {
                 int loops = 0;
-                while (clock.Millis() > nextGameTick && loops < GameLoopSettings.MAX_FRAMESKIP)
+                while (clock.Millis() > nextGameTick && loops < GameLoopSettings.MaxFrameskip)
                 {
                     float deltaTime = clock.Millis() - previousUpdateTick;
                     Update(deltaTime);
 
-                    nextGameTick += GameLoopSettings.SKIP_TICKS;
+                    nextGameTick += GameLoopSettings.SkipTicks;
                     loops++;
 
                     previousUpdateTick = clock.Millis();
                 }
 
-                // interpolation = (float)(clock.Millis() + GameLoopSettings.SKIP_TICKS - nextGameTick) /
-                //     (float)(GameLoopSettings.SKIP_TICKS);
+                interpolation = (clock.Millis() + GameLoopSettings.SkipTicks - nextGameTick) /
+                    GameLoopSettings.SkipTicks;
 
-                Display();
+                Display(interpolation);
             }
         }
 
@@ -73,7 +68,7 @@ namespace HeadisSimulatorSFML.Engine
             
         }
 
-        public static void Display()
+        public static void Display(float interpolation)
         {
             WindowManager.UpdateWindow();
         }
@@ -82,15 +77,5 @@ namespace HeadisSimulatorSFML.Engine
         {
             return clock.ElapsedTime.AsMicroseconds() / 1000;
         }
-    }
-
-    class GameLoopSettings
-    {
-        // 1 Tick = 1 Millisecond
-        public const int TICKS_PER_SECOND = 50;
-
-        public const int SKIP_TICKS = 1000 / TICKS_PER_SECOND;
-
-        public const int MAX_FRAMESKIP = 10;
     }
 }
